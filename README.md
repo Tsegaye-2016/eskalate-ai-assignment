@@ -1,63 +1,84 @@
-# AI Experts Assignment (JS/TS)
+# AI Software Engineer Assignment (TypeScript)
 
-This assignment evaluates your ability to:
+## Overview
 
-- set up a small JavaScript/TypeScript project to run reliably (locally + in Docker),
-- pin dependencies for reproducible installs,
-- write focused tests to reproduce a bug,
-- implement a minimal, reviewable fix.
+This project implements a simple HTTP client in TypeScript with OAuth2 support and a test suite using Vitest.
 
-## What you will do
+The repository includes:
 
-### 1) Dockerfile (required)
+- `src/` – Application source code
+- `tests/` – Test suite
+- `Dockerfile` – Docker configuration to run tests in an isolated environment
+- `Explanation.md` – Bug explanation and fix description
+- `.gitignore` – Git ignore rules
+- `package.json` – Dependencies with pinned versions (no ^ or ~)
 
-Create a `Dockerfile` so the project can run the test suite in a non-interactive, CI-style environment.
+Lockfiles are intentionally not committed, as required.
 
-Requirements:
+---
 
-- Your Docker image must run the test suite by default using npm test.
-- Ensure npm test works in a clean environment (Docker) without manual steps.
-- The build must install dependencies from package.json using npm install.
-- The image must run tests by default (use: `CMD ["npm", "test"]`).
+## Requirements
 
-### 2) Pin dependencies (required)
+- Node.js 20.5.1
+- npm
 
-- Pin dependency versions in package.json (no ^ / ~; use exact x.y.z).
-- Do not commit lockfiles (package-lock.json, yarn.lock, pnpm-lock.yaml).
+---
 
-### 3) README updates (required)
+## Install Dependencies
 
-Update this README to include:
+```bash
+npm install
+```
 
-- how to run the tests locally,
-- how to build and run tests with Docker.
+---
 
-### 4) Find + fix a bug (required)
+## Run Tests Locally
 
-There is a bug somewhere in this repository.
+```bash
+npm test
+```
 
-Your tasks:
+This runs the test suite using Vitest.
 
-- Identify the bug.
-- Apply the smallest possible fix to make the tests pass.
-- Keep the change minimal and reviewable (no refactors).
+---
 
-## Constraints
+## Run Tests in Watch Mode (Optional)
 
-- Keep changes minimal and reviewable.
-- Do not refactor unrelated code.
-- Do not introduce extra tooling unless required.
-- You may add tests and the smallest code change needed to fix the bug.
+```bash
+npm run test:watch
+```
 
-### 5) EXPLANATION.md (required)
+---
 
-Create `EXPLANATION.md` (max 250 words) containing:
+## Build and Run Tests with Docker
 
-- **What was the bug?**
-- **Why did it happen?**
-- **Why does your fix solve it?**
-- **One realistic case / edge case your tests still don’t cover**
+Make sure you are in the project root directory (where the Dockerfile exists).
 
-## Submission
+### 1. Build Docker Image
 
-- Submit a public GitHub repository URL containing your solution to the Google form link provided.
+```bash
+docker build -t ai-assignment .
+```
+
+### 2. Run Tests Inside Docker
+
+```bash
+docker run --rm ai-assignment
+```
+
+Docker will install dependencies and run the test suite inside a clean container.
+
+---
+
+## Notes
+
+- All dependency versions are pinned in `package.json`.
+- No lockfiles are committed.
+- The Docker image uses Node 20.5.1.
+- Tests pass both locally and inside Docker.
+
+---
+
+## Author
+
+Tsegaye
